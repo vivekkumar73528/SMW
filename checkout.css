@@ -1,0 +1,83 @@
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+header a {
+    text-decoration: none;
+    color: #fff;
+    margin: 0 15px;
+    font-weight: 500;
+}
+header a:hover {
+    color: #00bcd4;
+}
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+h1, h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: 400;
+    color: #555;
+}
+input[type="text"], input[type="email"], input[type="tel"], select {
+    width: calc(100% - 22px);
+    padding: 12px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+input[type="submit"], button {
+    background-color: #00bcd4;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 12px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 16px;
+}
+input[type="submit"]:hover, button:hover {
+    background-color: #0097a7;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+table th, table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+table th {
+    background-color: #f4f4f4;
+}
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+.total-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #00bcd4;
+}
+
+.total-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #0f0f0f;
+}

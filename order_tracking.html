@@ -1,0 +1,194 @@
+<?php session_start();
+include 'db.php';
+
+$userId =$_SESSION['user_id'] ?? null;
+
+if ($userId ===null) {
+    header('Location: index.php');
+    exit();
+}
+
+$orderId =$_GET['order_id'] ?? null;
+
+if ($orderId ===null) {
+    echo "Order ID is required.";
+    exit();
+}
+
+// Validate that order_id is an integer
+if ( !filter_var($orderId, FILTER_VALIDATE_INT)) {
+    echo "Invalid Order ID.";
+    exit();
+}
+
+// Fetch the order details
+$stmt =$pdo->prepare("
+ SELECT order_id, total_price, status, order_date FROM Orders WHERE order_id=? AND user_id=? ");
+$stmt->execute([$orderId, $userId]);
+    $order =$stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ( !$order) {
+        echo "Order not found or you do not have permission to view it.";
+        exit();
+    }
+
+    $orderDate =$order['order_date'];
+    $totalPrice =$order['total_price'];
+    $currentStatus =$order['status'];
+
+    // Fetch order items
+    $stmt =$pdo->prepare("
+ SELECT item_name, item_price, quantity FROM Order_Items WHERE order_id=? ");
+$stmt->execute([$orderId]);
+        $orderItems =$stmt->fetchAll(PDO::FETCH_ASSOC);
+        ?>
+<!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Order Tracking</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+        <style>
+            /* Basic styles */
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                color: #333;
+                margin: 0;
+                padding: 0;
+            }
+
+            header {
+                background-color: #333;
+                color: #fff;
+                padding: 10px;
+                text-align: center;
+            }
+
+            .container {
+                width: 80%;
+                margin: auto;
+                padding: 20px;
+            }
+
+            h1,
+            h2 {
+                color: #555;
+            }
+
+            .order-summary,
+            .order-items {
+                background: #fff;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+
+            .order-items table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            .order-items table,
+            .order-items th,
+            .order-items td {
+                border: 1px solid #ddd;
+            }
+
+            .order-items th,
+            .order-items td {
+                padding: 10px;
+                text-align: left;
+            }
+
+            .order-items th {
+                background-color: #f4f4f4;
+            }
+
+            .status {
+                padding: 10px;
+                background-color: #e7f4e4;
+                border-left: 5px solid #2d7d2a;
+            }
+
+            .status.pending {
+                background-color: #f9f1f1;
+                border-left: 5px solid #d9534f;
+            }
+
+            .status.shipped {
+                background-color: #d9edf7;
+                border-left: 5px solid #5bc0de;
+            }
+
+            .status.delivered {
+                background-color: #dff0d8;
+                border-left: 5px solid #5bc0b5;
+            }
+
+            .status.cancelled {
+                background-color: #f2dede;
+                border-left: 5px solid #d9534f;
+            }
+        </style>
+
+
+    <body>
+        <header> <a href="index.php" style="color: #fff;">Home</a> | <a href="cart.php" style="color: #fff;">Cart</a> |
+            <a href="logout.php" style="color: #fff;">Logout</a> </header>
+        <div class="container">
+            <h1>Order Tracking</h1>
+            <div class="order-summary">
+                <h2>Order Summary</h2>
+                <p><strong>Order ID:</strong>
+                    <?php echo htmlspecialchars($orderId); ?>
+                </p>
+                <p><strong>Order Date:</strong>
+                    <?php echo htmlspecialchars($orderDate); ?>
+                </p>
+                <p><strong>Total Price:</strong> ₹
+                    <?php echo number_format($totalPrice, 2); ?>
+                </p>
+                <div class="status <?php echo htmlspecialchars($currentStatus); ?>"> <strong>Current Status:</strong>
+                    <?php echo htmlspecialchars(ucfirst($currentStatus)); ?>
+                </div>
+            </div>
+            <div class="order-items">
+                <h2>Order Items</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($orderItems as $item): ?>
+                        <tr>
+                            <td>
+                                <?php echo htmlspecialchars($item['item_name']); ?>
+                            </td>
+                            <td>₹
+                                <?php echo number_format($item['item_price'], 2); ?>
+                            </td>
+                            <td>
+                                <?php echo htmlspecialchars($item['quantity']); ?>
+                            </td>
+                            <td>₹
+                                <?php echo number_format($item['item_price'] * $item['quantity'], 2); ?>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+
+    </html>

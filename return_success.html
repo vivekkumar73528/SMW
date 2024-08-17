@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Return Success</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #e9ecef;
+            color: #495057;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 40px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn {
+            border-radius: 30px;
+            padding: 12px 24px;
+            margin: 10px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .btn-primary {
+            background-color: #17a2b8;
+            color: #ffffff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #138496;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: #ffffff;
+            border: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        .btn-outline-info {
+            border: 2px solid #17a2b8;
+            color: #17a2b8;
+        }
+
+        .btn-outline-info:hover {
+            background-color: #17a2b8;
+            color: #ffffff;
+        }
+
+        .icon {
+            font-size: 5rem;
+            color: #17a2b8;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            margin-top: 30px;
+            border: none;
+            border-radius: 10px;
+            background: #f8f9fa;
+        }
+
+        .card-body {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .card-title {
+            margin-bottom: 20px;
+            font-size: 1.75rem;
+            color: #343a40;
+        }
+
+        h1 {
+            color: #343a40;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #6c757d;
+            font-size: 1.1rem;
+        }
+    </style>
+
+<body>
+    <div class="container"><i class="fas fa-check-circle icon"></i>
+        <h1>Return Request Submitted</h1>
+        <p>Your return request has been successfully submitted. We will process it shortly.</p>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">What Would You Like to Do Next?</h5><a href="user_dashboard.php"
+                    class="btn btn-primary"><i class="fas fa-tachometer-alt"></i>Go to Dashboard</a><a
+                    href="return_tracking.php" class="btn btn-outline-info"><i class="fas fa-truck-loading"></i>Track
+                    Your Return</a><a href="./contact_support.php" class="btn btn-secondary"><i
+                        class="fas fa-headset"></i>Contact Support</a><a href="./feedback_form.php"
+                    class="btn btn-primary"><i class="fas fa-comments"></i>Submit Feedback</a><a
+                    href="./order_details.php" class="btn btn-outline-info"><i class="fas fa-history"></i>View Order
+                    History</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

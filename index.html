@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    /* *{
+        padding: 0px;
+        width: 0px;
+        box-sizing: border-box;
+    } */
+    .video {
+        display: flex;
+        width: 100%;
+        height: auto;
+    }
+   .cart-video-section {
+    max-width: 900px;
+        display: grid;
+        grid-template-columns: 2fr 2fr;
+        grid-gap: 15px;
+    }
+
+    .video-cart.large {
+        grid-row: span 3;
+    }
+
+    .video-cart {
+        cursor: pointer;
+        margin: 0;
+        text-align: center;
+        transition: transform 0.2s ease-in-out;
+        background-color: #f8f8f8;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .video-cart:hover {
+        transform: scale(1.05);
+    }
+
+    .video-thumbnail {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .video-thumbnail img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .play-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 40px;
+        color: white;
+        opacity: 0.8;
+        pointer-events: none;
+    }
+
+    .video-cart h2 {
+        padding: 15px 10px;
+        font-size: 1.2em;
+    }
+
+    @media screen and (max-width: 768px) {
+        .cart-video-section {
+            grid-template-columns: 1fr;
+        }
+
+        .video-cart.large {
+            grid-row: auto;
+        }
+    }
+
+</style>
+<body>
+    <div class="video">
+        <div class="cart-video-section">
+            <div class="video-cart" onclick="openModal('https://example.com/video1.mp4')">
+                <div class="video-thumbnail">
+                    <img src="https://scontent.cdninstagram.com/v/t51.29350-15/431102035_1083951779538519_7449630860424904779_n.heic?stp=dst-jpg&_nc_cat=110&ccb=1-7&_nc_sid=18de74&_nc_ohc=3VdTC6_lt1AQ7kNvgGTi3W1&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AYAzBqwEClaUcYhEiCeKl2IMAyS3fFYvzQusFvi0fGJ_0w&oe=66C4AD30"
+                        alt="Video 1">
+                    <div class="play-button">&#9658;</div>
+                </div>
+                <h2>Video Title 1</h2>
+            </div>
+    
+            <div class="video-cart" onclick="openModal('https://example.com/video2.mp4')">
+                <div class="video-thumbnail">
+                    <img src="https://scontent.cdninstagram.com/v/t51.29350-15/433848356_330067936728455_7827973354257252371_n.heic?stp=dst-jpg&_nc_cat=104&ccb=1-7&_nc_sid=18de74&_nc_ohc=aS9hAVRrfy4Q7kNvgEj2JOw&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AYD1keHkfLkB2VAxJ_5Q4ITwj-lKVoF46DnpHz7mk_Vo7A&oe=66C4D30E"
+                        alt="Video 2">
+                    <div class="play-button">&#9658;</div>
+                </div>
+                <h2>Video Title 2</h2>
+            </div>
+    
+            <div class="video-cart" onclick="openModal('https://example.com/video3.mp4')">
+                <div class="video-thumbnail">
+                    <img src="https://scontent.cdninstagram.com/v/t51.29350-15/449700964_1440937819889884_7256943135306407262_n.heic?stp=dst-jpg&_nc_cat=100&ccb=1-7&_nc_sid=18de74&_nc_ohc=PyX2mtQTrhIQ7kNvgFSO-KQ&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AYAzGpxx4r_lCB5UknCXVdmqG7ZQO8wkdTJnYca12nW7mg&oe=66C4D3AB"
+                        alt="Video 3">
+                    <div class="play-button">&#9658;</div>
+                </div>
+                <h2>Video Title 3</h2>
+            </div>
+    
+            <div class="video-cart" onclick="openModal('https://example.com/video4.mp4')">
+                <div class="video-thumbnail">
+                    <img src="https://scontent.cdninstagram.com/v/t51.29350-15/449196910_299218619851936_6283982173610466841_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=18de74&_nc_ohc=lSVzXLH1mHMQ7kNvgHbznKK&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AYC-mlj5Ct5CSKKS2C9U2Zaj5w8lM8_DiIeHhGfkMLQO1g&oe=66C4C1A3"
+                        alt="Video 4">
+                    <div class="play-button">&#9658;</div>
+                </div>
+                <h2>Video Title 4</h2>
+            </div>
+        </div>
+    </div>
+    
+   
+    
+   
+    
+    <script>
+        function openModal(videoSrc) {
+            const modal = document.getElementById("videoModal");
+            const videoPlayer = document.getElementById("videoPlayer");
+            videoPlayer.src = videoSrc;
+            modal.style.display = "block";
+        }
+    
+        function closeModal() {
+            const modal = document.getElementById("videoModal");
+            const videoPlayer = document.getElementById("videoPlayer");
+            videoPlayer.pause();
+            modal.style.display = "none";
+        }
+    </script>
+    
+    
+</body>
+</html>
